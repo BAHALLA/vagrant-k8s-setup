@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
     subconfig.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
     end
+    config.vm.provision "shell",
+      inline: "sudo yum install -y avahi-tools avahi-ui-tools"    
   end
   config.vm.define "data" do |subconfig|  
     subconfig.vm.box = BOX_IMAGE   
@@ -22,6 +24,8 @@ Vagrant.configure("2") do |config|
     subconfig.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "4048"]
     end
+    config.vm.provision "shell",
+      inline: "sudo yum install -y avahi-tools avahi-ui-tools"    
   end
   config.vm.define "master" do |subconfig|  
       subconfig.vm.box = BOX_IMAGE_KUBE   
@@ -42,7 +46,6 @@ Vagrant.configure("2") do |config|
           end
      end   
    end   
-   # Install avahi on all machines 
-   config.vm.provision "shell",
-    inline: "sudo yum install -y avahi-tools avahi-ui-tools"    
+ 
+   
 end

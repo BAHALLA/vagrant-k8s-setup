@@ -1,4 +1,21 @@
 # vagrant-multi-vms
 
-This is an example of vagrantfile to start multi-machines.
+This repo contains an example of vagrantfile to spin up multi VMs.
+
+## Helpful commands
+
+```
+vagrant status
+```
+```
+vagrant up <vm-name>
+```
+```
+vagrant halt
+```
+```
+vagrant destroy
+```
+
+
 

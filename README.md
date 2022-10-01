@@ -1,6 +1,6 @@
-# vagrant-multi-vms
+# Vagrant-multi-vms
 
-This repo contains an example of vagrantfile to spin up multi VMs.
+This repo contains an example of Vagrantfile to spin up multi VMs [Vagrant doc](https://www.vagrantup.com/docs).
 
 ## Helpful commands
 
@@ -11,10 +11,10 @@ vagrant status
 vagrant up <vm-name>
 ```
 ```
-vagrant halt
+vagrant halt <vm-name>
 ```
 ```
-vagrant destroy
+vagrant destroy <vm-name>
 ```
 
 

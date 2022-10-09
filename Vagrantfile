@@ -19,8 +19,8 @@ Vagrant.configure("2") do |config|
   end
   config.vm.define "data" do |subconfig|  
     subconfig.vm.box = BOX_IMAGE   
-    subconfig.vm.hostname = "data"   
-    subconfig.vm.network :private_network, ip: "10.0.0.8"  
+    subconfig.vm.hostname = "console"   
+    subconfig.vm.network :public_network, ip: "192.168.1.8"  
     subconfig.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "4048"]
     end
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "master" do |subconfig|  
       subconfig.vm.box = BOX_IMAGE_KUBE   
       subconfig.vm.hostname = "master"   
-      subconfig.vm.network :private_network, ip: "10.0.0.10"  
+      subconfig.vm.network :public_network, ip: "192.168.1.10"  
       subconfig.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", "2048"]
       end
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
      config.vm.define "node#{i}" do |subconfig|  
           subconfig.vm.box = BOX_IMAGE_KUBE      
           subconfig.vm.hostname = "node#{i}"   
-          subconfig.vm.network :private_network, ip: "10.0.0.#{i + 10}" 
+          subconfig.vm.network :public_network, ip: "192.168.1.#{i + 10}" 
           subconfig.vm.provider :virtualbox do |vb|
             vb.customize ["modifyvm", :id, "--memory", "3072"]
             vb.customize ["modifyvm", :id, "--cpus", "2"]

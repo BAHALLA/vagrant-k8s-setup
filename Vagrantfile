@@ -1,7 +1,7 @@
 # -*- mode: ruby -*- 
 # vi: set ft=ruby : 
 
-BOX_IMAGE = "rockylinux/9"
+BOX_IMAGE = "centos/7"
 NODE_COUNT = 2 
 
 Vagrant.configure("2") do |config|  

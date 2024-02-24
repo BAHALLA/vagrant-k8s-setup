@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
       subconfig.vm.network :private_network, ip: "10.0.0.10"  
       subconfig.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", "2048"]
+        vb.customize ["modifyvm", :id, "--cpus", "2"]
       end
   end     
   (1..NODE_COUNT).each do |i|   

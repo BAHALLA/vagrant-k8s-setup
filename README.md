@@ -1,8 +1,6 @@
-# Vagrant-multi-vms
+# Setup b8s cluster 
 
-This repo contains an example of Vagrantfile to spin up multi VMs [Vagrant doc](https://www.vagrantup.com/docs).
-
-## Helpful commands
+## Create VMs using vagrant : 
 
 ```
 vagrant status
@@ -16,6 +14,10 @@ vagrant halt <vm-name>
 ```
 vagrant destroy <vm-name>
 ```
+## Setup cluster
+
+[Refer to setup doc](https://github.com/user/repo/blob/branch/other_file.md) 
+
 
 
 

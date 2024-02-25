@@ -1,4 +1,6 @@
-# Setup b8s cluster 
+# Setup k8s cluster 
+
+_____________________________________
 
 ## Create VMs using vagrant : 
 

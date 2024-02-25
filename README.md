@@ -3,19 +3,12 @@
 _____________________________________
 
 ## Create VMs using vagrant : 
+The vagrant file in this repo contains config to create master and node VMs for k8s clsuter, to create VMs run the following command:
 
+```shell
+vagrant up
 ```
-vagrant status
-```
-```
-vagrant up <vm-name>
-```
-```
-vagrant halt <vm-name>
-```
-```
-vagrant destroy <vm-name>
-```
+
 ## Setup cluster
 
 [k8s setup with kubeadm](https://github.com/BAHALLA/vagrant-k8s-setup/blob/main/docs/k8s-setup-with-kubeadm.md) 

@@ -183,14 +183,16 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 #You can now join any number of control-plane nodes by copying certificate authorities
 #and service account keys on each node and then running the following as root:
 
-kubeadm join 10.0.0.10:6443 --token j3wd1v.a77wbxn7mbz80xyc \
---discovery-token-ca-cert-hash sha256:15d679f9e290b7e353a4c6b70bc97414807e7758268f03dbf87e9e0efd50f8c5 \
+kubeadm join 192.168.0.10:6443 --token bn6w4b.knbciksq5p304eqc \
+--discovery-token-ca-cert-hash sha256:bfc75634df75e8cb91cc2083da653a0c28914bddb9a574befab73407f33904a2 \
 --control-plane 
+
 
 #Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 10.0.0.10:6443 --token j3wd1v.a77wbxn7mbz80xyc \
-	--discovery-token-ca-cert-hash sha256:15d679f9e290b7e353a4c6b70bc97414807e7758268f03dbf87e9e0efd50f8c5 
+kubeadm join 192.168.0.10:6443 --token bn6w4b.knbciksq5p304eqc \
+	--discovery-token-ca-cert-hash sha256:bfc75634df75e8cb91cc2083da653a0c28914bddb9a574befab73407f33904a2 
+
 
 ```
 

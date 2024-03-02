@@ -135,11 +135,30 @@ sudo systemctl enable --now kubelet
 
 * Configure kubelet with systemd
 
-```
-# kubeadm-config.yaml
-kind: ClusterConfiguration
+```shell
+# config.yaml
+controlPlaneEndpoint: 192.168.0.10
+apiServer:
+  extraArgs:
+    authorization-mode: Node,RBAC
+    advertise-address: 192.168.0.10
+  timeoutForControlPlane: 4m0s
 apiVersion: kubeadm.k8s.io/v1beta3
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controllerManager: {}
+dns: {}
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: registry.k8s.io
+kind: ClusterConfiguration
 kubernetesVersion: v1.28.7
+networking:
+  dnsDomain: cluster.local
+  serviceSubnet: 10.96.0.0/12
+  podSubnet: 10.244.0.0/16
+scheduler: {}
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
@@ -149,7 +168,7 @@ cgroupDriver: systemd
 * Run kubeadm init
 
 ```shell
-kubeadm init --config kubeadm-config.yaml
+kubeadm init --config config.yaml
 ```
 * Configure kubectl
 
@@ -161,7 +180,18 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 * Joinning nodes
 
 ```shell
-kubeadm join 10.0.2.15:6443 --token rbyvh1.6by8143ikr905nr2 --discovery-token-ca-cert-hash sha256:8868bd925630a6febde88292bcf1b5978a268106a9ff3315cb1fc4c06dfbb4a5 
+#You can now join any number of control-plane nodes by copying certificate authorities
+#and service account keys on each node and then running the following as root:
+
+kubeadm join 10.0.0.10:6443 --token j3wd1v.a77wbxn7mbz80xyc \
+--discovery-token-ca-cert-hash sha256:15d679f9e290b7e353a4c6b70bc97414807e7758268f03dbf87e9e0efd50f8c5 \
+--control-plane 
+
+#Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.0.0.10:6443 --token j3wd1v.a77wbxn7mbz80xyc \
+	--discovery-token-ca-cert-hash sha256:15d679f9e290b7e353a4c6b70bc97414807e7758268f03dbf87e9e0efd50f8c5 
+
 ```
 
 ## Install CNI : cilium => control plan node
